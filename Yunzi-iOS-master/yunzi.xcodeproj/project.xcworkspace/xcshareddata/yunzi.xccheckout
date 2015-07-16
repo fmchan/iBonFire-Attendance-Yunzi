@@ -7,34 +7,34 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>C2F9B92E-4BFC-43E6-B0EC-508736CAABAA</string>
 	<key>IDESourceControlProjectName</key>
-	<string>yunzi</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>B02F6FC424206C7E550629B56D77C5F3AEFE8C92</key>
-		<string>https://github.com/sensoro/Yunzi-iOS.git</string>
+		<key>5FF089FA9B299E9A123C6D8CB7FFD5EFD2D9FEEA</key>
+		<string>https://github.com/fmchan/ios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>yunzi.xcodeproj</string>
+	<string>Yunzi-iOS-master/yunzi.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>B02F6FC424206C7E550629B56D77C5F3AEFE8C92</key>
-		<string>../..</string>
+		<key>5FF089FA9B299E9A123C6D8CB7FFD5EFD2D9FEEA</key>
+		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/sensoro/Yunzi-iOS.git</string>
+	<string>https://github.com/fmchan/ios.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>B02F6FC424206C7E550629B56D77C5F3AEFE8C92</string>
+	<string>5FF089FA9B299E9A123C6D8CB7FFD5EFD2D9FEEA</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>B02F6FC424206C7E550629B56D77C5F3AEFE8C92</string>
+			<string>5FF089FA9B299E9A123C6D8CB7FFD5EFD2D9FEEA</string>
 			<key>IDESourceControlWCCName</key>
-			<string>yunzi</string>
+			<string>ios</string>
 		</dict>
 	</array>
 </dict>
