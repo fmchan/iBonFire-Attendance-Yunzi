@@ -154,6 +154,7 @@
     NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
     NSString *docfilePath = [basePath stringByAppendingPathComponent:@"bonfire.plist"];
     NSMutableDictionary *plistdict = [NSMutableDictionary dictionaryWithContentsOfFile:docfilePath];
+    NSLog(@"get name: %@", [plistdict objectForKey:@"name"]);
     return [plistdict objectForKey:@"name"];
 }
 - (void)check{
@@ -161,7 +162,7 @@
     if ([self.window.rootViewController.presentedViewController isKindOfClass:[CheckViewController class]]) {
         [(CheckViewController *)self.window.rootViewController.presentedViewController refresh];
     }
-    
+    NSLog(@"check");
     if ([self checkBluetoothServices]&&[self checkLocationServices]&& [self getName] != nil && [[self getName] length] > 0) {
 
     }

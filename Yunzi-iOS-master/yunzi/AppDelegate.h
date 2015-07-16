@@ -15,6 +15,7 @@
 - (BOOL)checkLocationServices;
 - (BOOL)checkBluetoothServices;
 - (NSString *)getName;
+- (void)check;
 
 @end
 

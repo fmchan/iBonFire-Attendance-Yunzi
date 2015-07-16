@@ -50,7 +50,6 @@
         _itemArray = [[NSMutableArray alloc] init];
         for (NSInteger i = 0; i < 3; i++) {
             YunziItemView *item = [[YunziItemView alloc] initWithFrame:CGRectMake(0,0,self.bounds.size.width/3,self.bounds.size.height)];
-            item.validBeacons = self.validBeacons;
             item.tapBlock = self.tapBlock;
             [self.itemArray addObject:item];
             [self.contentView addSubview:item];
@@ -71,6 +70,7 @@
     
     for (NSUInteger i = 0; i < 3; i++) {
         YunziItemView *item = self.itemArray[i];
+        item.validBeacons = self.validBeacons;
         if (i < self.dataArray.count) {
             item.beacon = self.dataArray[i];
         } else {

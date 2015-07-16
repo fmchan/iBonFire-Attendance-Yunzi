@@ -24,7 +24,7 @@
     {
         UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 100)];
         label.backgroundColor = [UIColor clearColor];
-        label.center = CGPointMake(kScreenWidth/2, self.view.bounds.size.height/2-100);
+        label.center = CGPointMake(kScreenWidth/2, self.view.bounds.size.height/2-130);
         label.font = [UIFont fontWithName:@"STHeitiSC" size:30];
         label.textColor = UIColorFromRGB(0xdcdcdc);
         label.backgroundColor = [UIColor clearColor];
@@ -95,9 +95,9 @@
     }
 
     {
-        UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
+        UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 240, 40)];
         textField.borderStyle = UITextBorderStyleRoundedRect;
-        textField.center = CGPointMake(kScreenWidth/2, self.view.bounds.size.height/2+150);
+        textField.center = CGPointMake(kScreenWidth/2, self.view.bounds.size.height/2-70);
         textField.font = [UIFont systemFontOfSize:15];
         textField.placeholder = @"enter login name";
         textField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -126,7 +126,7 @@
 }
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
     NSLog(@"textFieldShouldEndEditing");
-    textField.backgroundColor = [UIColor yellowColor];
+    //textField.backgroundColor = [UIColor yellowColor];
     return YES;
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField{

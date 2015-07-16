@@ -9,6 +9,7 @@
 #import "HomeViewController.h"
 #import "YunziGridCell.h"
 #import "YunziViewController.h"
+#import "LogTableViewController.h"
 
 @interface HomeViewController ()<SBKBeaconManagerDelegate,UISearchBarDelegate>
 
@@ -19,16 +20,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title =  NSLocalizedString(@"Yunzi", @"");
+    self.navigationItem.title =  NSLocalizedString(@"Bonfire", @"");
     
     
-    self.navigationItem.titleView = [TitleView setTitleLabel:NSLocalizedString(@"Yunzi", @"")];
+    self.navigationItem.titleView = [TitleView setTitleLabel:NSLocalizedString(@"Bonfire", @"")];
     [SBKBeaconManager sharedInstance].delegate = self;
     [self configSearchBar];
     [self configRightButton];
+}
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:@"http://119.9.91.62/test/getBeaconsByUser.php?user=rex"]];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://119.9.91.62/test/getBeaconsByUser.php?user=%@", [appDelegate getName]]]];
     [request setHTTPMethod:@"GET"];
     
     NSURLResponse *requestResponse;
@@ -36,15 +44,11 @@
     NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
     self.validBeacons = [requestReply componentsSeparatedByString:@","];
     NSLog(@"validBeacons: %@", self.validBeacons);
-}
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    if(!self.dataArray)
-    {
+    //if(!self.dataArray)
+    //{
         [self refresh];
-    }
+    //}
 }
 
 - (void)didReceiveMemoryWarning {
@@ -70,6 +74,21 @@
     
 }
 
+- (void)logout
+{
+    NSMutableDictionary *dictPlist = [[NSMutableDictionary alloc] init];
+    [dictPlist setValue:@"" forKey:@"name"];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    NSString *docfilePath = [basePath stringByAppendingPathComponent:@"bonfire.plist"];
+    [dictPlist writeToFile:docfilePath atomically:YES];
+
+    NSMutableDictionary *plistdict = [NSMutableDictionary dictionaryWithContentsOfFile:docfilePath];
+    NSLog(@"name:%@", [plistdict objectForKey:@"name"]);
+
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate check];
+}
 - (void)refresh
 {
     self.dataArray = [NSMutableArray array];
@@ -105,13 +124,13 @@
         YunziGridCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (!cell) {
             cell = [[YunziGridCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            cell.validBeacons = self.validBeacons;
             cell.tapBlock = ^(SBKBeacon *beacon) {
                 YunziViewController * VC = [[YunziViewController alloc]init];
                 VC.beacon = beacon;
                 [self.navigationController pushViewController:VC animated:YES];
             };
         }
+        cell.validBeacons = self.validBeacons;
         
         NSMutableArray *array = [[NSMutableArray alloc] init];
         NSUInteger offset = indexPath.row * 3;
@@ -280,13 +299,29 @@
         [button setTitle:[NSString fontAwesomeIconStringForEnum:FARefresh] forState:UIControlStateNormal];
         [array addObject:[[UIBarButtonItem alloc]initWithCustomView:button]];
     }
+
+    {
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+        button.backgroundColor = [UIColor clearColor];
+        button.titleLabel.font = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
+        [button setTitleEdgeInsets:UIEdgeInsetsMake(6, 0, 0, 0)];
+        [button setTitleColor:UIColorFromRGB(0x444444) forState:UIControlStateNormal];
+        [button setTitleColor:UIColorFromRGB(0x999999) forState:UIControlStateSelected];
+        [button setTitleColor:UIColorFromRGB(0x999999) forState:UIControlStateHighlighted];
+        [button setTitleColor:UIColorFromRGB(0x444444) forState:UIControlStateSelected|UIControlStateHighlighted];
+        [button addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+        [button setTitle:[NSString fontAwesomeIconStringForEnum:FARefresh] forState:UIControlStateNormal];
+        [array addObject:[[UIBarButtonItem alloc]initWithCustomView:button]];
+    }
     
     self.navigationItem.rightBarButtonItems = array;
 }
 
 - (void)goForMoreInfo
 {
-    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://sensoro.com"]];
+    //[[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://sensoro.com"]];
+    LogTableViewController *logController = [[LogTableViewController alloc]init];
+    [self.navigationController pushViewController:logController animated:YES];
 }
 
 #pragma mark - SearchBarDelegate
