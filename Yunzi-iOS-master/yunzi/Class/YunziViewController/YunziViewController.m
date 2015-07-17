@@ -179,7 +179,7 @@
         [view addSubview:label];
     }
     
-    {
+    /*{
         UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(kScreenWidth/2+10, 100, kScreenWidth/2, 20)];
         label.backgroundColor = [UIColor clearColor];
         label.text = [NSString stringWithFormat:@"%@ : %@",NSLocalizedString(@"Temperature", @""),self.beacon.temperature];
@@ -188,7 +188,7 @@
         label.textAlignment = NSTextAlignmentLeft;
         label.tag = 100;
         [view addSubview:label];
-    }
+    }*/
     
     /*{
         UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(kScreenWidth/2+10, 60, kScreenWidth/2, 20)];

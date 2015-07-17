@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>C2F9B92E-4BFC-43E6-B0EC-508736CAABAA</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>yunzi</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>5FF089FA9B299E9A123C6D8CB7FFD5EFD2D9FEEA</key>
 		<string>https://github.com/fmchan/ios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Yunzi-iOS-master/yunzi.xcodeproj/project.xcworkspace</string>
+	<string>Yunzi-iOS-master/yunzi.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>5FF089FA9B299E9A123C6D8CB7FFD5EFD2D9FEEA</key>
