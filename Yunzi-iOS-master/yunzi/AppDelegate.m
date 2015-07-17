@@ -180,17 +180,17 @@
 
 - (void)beacon:(NSNotification *)notification {
     SBKBeacon *beacon = notification.object;
+    NSLog(@"hi:%@, %@", beacon.serialNumber, beacon.temperature);
     if (!beacon.serialNumber) {
         return;
     }
     
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:beacon.serialNumber]) {
+    /*if (![[NSUserDefaults standardUserDefaults] boolForKey:beacon.serialNumber]) {
         return;
-    }
+    }*/
 
     NSMutableDictionary *dictPlist = [Setting getPlist];
     NSString *action = @"in";
-    
     if ([[dictPlist objectForKey:@"beacons"] containsObject:beacon.serialNumber]) {
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground){
         if (beacon.inRange) {
@@ -210,8 +210,7 @@
     }
     else{
         if (beacon.inRange) {
-            NSString * message = [NSString stringWithFormat:@"\U0001F603 IN:%@",beacon.serialNumber];
-            [SVProgressHUD showImage:nil status:message];
+            NSString * message = [NSString stringWithFormat:@"\U0001F603 IN:%@",beacon.serialNumber];            [SVProgressHUD showImage:nil status:message];
         }
         else{
             NSString * message = [NSString stringWithFormat:@"\U0001F628 OUT:%@",beacon.serialNumber];

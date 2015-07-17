@@ -132,8 +132,8 @@
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     NSLog(@"textFieldDidEndEditing");
-    NSMutableDictionary *dictPlist = [NSMutableDictionary dictionaryWithContentsOfFile:[Setting getPath]];
-    [dictPlist setValue:textField.text forKey:@"name"];
+    NSMutableDictionary *dictPlist = [Setting getPlist];
+    [dictPlist setValue:[textField.text lowercaseString] forKey:@"name"];
     [dictPlist writeToFile:[Setting getPath] atomically:YES];
     NSLog(@"name: %@", [dictPlist objectForKey:@"name"]);
     [self refresh];

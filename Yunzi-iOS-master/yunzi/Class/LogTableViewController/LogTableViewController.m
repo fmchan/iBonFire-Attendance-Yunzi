@@ -20,6 +20,7 @@
     
     self.view.backgroundColor = UIColorFromRGB(0x222222);
     self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight - kStatusBarHeight - kNavigationBarHeight);
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -59,12 +60,31 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
+    cell.backgroundColor = [UIColor clearColor];
+    NSDictionary *dict = [self.logs objectAtIndex:indexPath.row];
     
-    [cell.textLabel setText:[[self.logs objectAtIndex:indexPath.row] valueForKey:@"beacon"]];
+    [cell.textLabel setText:[dict valueForKey:@"beacon"]];
+    cell.textLabel.textColor = [UIColor whiteColor];
+
+    NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [dateFormat setTimeZone:[NSTimeZone localTimeZone]];
+    
+    [cell.detailTextLabel setText:[dateFormat stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[[dict objectForKey:@"date"] valueForKey:@"sec"] integerValue]]]];
+    cell.detailTextLabel.textColor = [UIColor whiteColor];
+    
+    if ([@"in" isEqualToString:[dict valueForKey:@"action"]])
+        [cell.imageView setImage:[UIImage imageNamed:@"green-icon"]];
+    else
+        [cell.imageView setImage:[UIImage imageNamed:@"red-icon"]];
     
     return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
 }
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

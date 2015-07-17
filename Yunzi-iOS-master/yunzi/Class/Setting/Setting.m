@@ -15,6 +15,10 @@
     return [basePath stringByAppendingPathComponent:@"bonfire.plist"];
 }
 + (NSMutableDictionary *)getPlist {
-    return [NSMutableDictionary dictionaryWithContentsOfFile:[self getPath]];
+    NSMutableDictionary *plist = [NSMutableDictionary dictionaryWithContentsOfFile:[self getPath]];
+
+    if (plist == nil)
+        return [NSMutableDictionary new];
+    else return plist;
 }
 @end

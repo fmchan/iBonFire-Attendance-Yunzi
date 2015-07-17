@@ -72,9 +72,16 @@
 		4EDD70F819EE8E3D0080C8DC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4EDD70FA19EE8E3D0080C8DC /* InfoPlist.strings */; };
 		4EDD710319EEE2560080C8DC /* ProximityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDD710219EEE2560080C8DC /* ProximityViewController.m */; };
 		4EDD710719EF7B480080C8DC /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDD710619EF7B480080C8DC /* NotificationViewController.m */; };
-		4EDD710D19EFD4EE0080C8DC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EDD710C19EFD4EE0080C8DC /* MapKit.framework */; };
 		4EDD711819F0FA880080C8DC /* CheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDD711719F0FA880080C8DC /* CheckViewController.m */; };
 		846ACB961B589CF100430090 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 846ACB951B589CF100430090 /* Setting.m */; };
+		846ACB991B58BE2F00430090 /* green-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 846ACB971B58BE2F00430090 /* green-icon.png */; };
+		846ACB9A1B58BE2F00430090 /* red-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 846ACB981B58BE2F00430090 /* red-icon.png */; };
+		846ACBA51B58EFD600430090 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846ACBA31B58EF2B00430090 /* Security.framework */; };
+		846ACBA61B58EFD600430090 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846ACBA11B58EEC700430090 /* Foundation.framework */; };
+		846ACBA71B58EFD600430090 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846ACB9F1B58EEBD00430090 /* UIKit.framework */; };
+		846ACBA81B58EFD600430090 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846ACB9D1B58EEB300430090 /* CoreLocation.framework */; };
+		846ACBA91B58EFD600430090 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 846ACB9B1B58EEAB00430090 /* CoreBluetooth.framework */; };
+		846ACBAA1B58EFD600430090 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EDD710C19EFD4EE0080C8DC /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -220,6 +227,13 @@
 		4EDD711719F0FA880080C8DC /* CheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckViewController.m; sourceTree = "<group>"; };
 		846ACB941B589CF100430090 /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Setting.h; path = Class/Setting/Setting.h; sourceTree = "<group>"; };
 		846ACB951B589CF100430090 /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Setting.m; path = Class/Setting/Setting.m; sourceTree = "<group>"; };
+		846ACB971B58BE2F00430090 /* green-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "green-icon.png"; path = "images/green-icon.png"; sourceTree = "<group>"; };
+		846ACB981B58BE2F00430090 /* red-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "red-icon.png"; path = "images/red-icon.png"; sourceTree = "<group>"; };
+		846ACB9B1B58EEAB00430090 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		846ACB9D1B58EEB300430090 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		846ACB9F1B58EEBD00430090 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		846ACBA11B58EEC700430090 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		846ACBA31B58EF2B00430090 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,9 +241,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				846ACBA51B58EFD600430090 /* Security.framework in Frameworks */,
+				846ACBA61B58EFD600430090 /* Foundation.framework in Frameworks */,
+				846ACBA71B58EFD600430090 /* UIKit.framework in Frameworks */,
+				846ACBA81B58EFD600430090 /* CoreLocation.framework in Frameworks */,
+				846ACBA91B58EFD600430090 /* CoreBluetooth.framework in Frameworks */,
+				846ACBAA1B58EFD600430090 /* MapKit.framework in Frameworks */,
 				4E5AFB2F1A65306E0096B5EA /* libSensoroBeaconKit.a in Frameworks */,
 				4E5AFB301A65306E0096B5EA /* libSensoroCloud.a in Frameworks */,
-				4EDD710D19EFD4EE0080C8DC /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,7 +267,6 @@
 		4E19F2FA19E930CC00486365 = {
 			isa = PBXGroup;
 			children = (
-				4EDD710C19EFD4EE0080C8DC /* MapKit.framework */,
 				4E19F30519E930CC00486365 /* yunzi */,
 				4E19F30419E930CC00486365 /* Products */,
 			);
@@ -281,6 +299,14 @@
 		4E19F30619E930CC00486365 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				846ACBA31B58EF2B00430090 /* Security.framework */,
+				846ACBA11B58EEC700430090 /* Foundation.framework */,
+				846ACB9F1B58EEBD00430090 /* UIKit.framework */,
+				846ACB9D1B58EEB300430090 /* CoreLocation.framework */,
+				846ACB9B1B58EEAB00430090 /* CoreBluetooth.framework */,
+				4EDD710C19EFD4EE0080C8DC /* MapKit.framework */,
+				846ACB971B58BE2F00430090 /* green-icon.png */,
+				846ACB981B58BE2F00430090 /* red-icon.png */,
 				4EDD70FE19EE8FAF0080C8DC /* Info.plist */,
 				4EDD70FA19EE8E3D0080C8DC /* InfoPlist.strings */,
 				4E19F30819E930CC00486365 /* main.m */,
@@ -738,6 +764,7 @@
 				4EDD70DD19EE6F600080C8DC /* earth-9.png in Resources */,
 				4EDD70E219EE747A0080C8DC /* green@2x.png in Resources */,
 				4EDD70DB19EE6F600080C8DC /* earth-7.png in Resources */,
+				846ACB9A1B58BE2F00430090 /* red-icon.png in Resources */,
 				4EDD70E419EE747A0080C8DC /* yellow@2x.png in Resources */,
 				4EDD70E319EE747A0080C8DC /* red@2x.png in Resources */,
 				4EDD70D119EE6F600080C8DC /* earth-14.png in Resources */,
@@ -748,6 +775,7 @@
 				4EDD70CF19EE6F600080C8DC /* earth-12.png in Resources */,
 				4E19F37219E9341500486365 /* FontAwesome.ttf in Resources */,
 				4EDD70DA19EE6F600080C8DC /* earth-6.png in Resources */,
+				846ACB991B58BE2F00430090 /* green-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,6 +25,7 @@
     
     
     self.navigationItem.titleView = [TitleView setTitleLabel:NSLocalizedString(@"Bonfire", @"")];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     [SBKBeaconManager sharedInstance].delegate = self;
     [self configSearchBar];
     [self configRightButton];
@@ -82,6 +83,7 @@
 {
     NSMutableDictionary *dictPlist = [NSMutableDictionary dictionaryWithContentsOfFile:[Setting getPath]];
     [dictPlist setValue:@"" forKey:@"name"];
+    [dictPlist setValue:nil forKey:@"beacons"];
     [dictPlist writeToFile:[Setting getPath] atomically:YES];
 
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
@@ -274,10 +276,10 @@
         button.backgroundColor = [UIColor clearColor];
         button.titleLabel.font = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
         [button setTitleEdgeInsets:UIEdgeInsetsMake(6, 0, 0, 0)];
-        [button setTitleColor:UIColorFromRGB(0x444444) forState:UIControlStateNormal];
-        [button setTitleColor:UIColorFromRGB(0x999999) forState:UIControlStateSelected];
-        [button setTitleColor:UIColorFromRGB(0x999999) forState:UIControlStateHighlighted];
-        [button setTitleColor:UIColorFromRGB(0x444444) forState:UIControlStateSelected|UIControlStateHighlighted];
+        [button setTitleColor:UIColorFromRGB(0x999999) forState:UIControlStateNormal];
+        [button setTitleColor:UIColorFromRGB(0xffffff) forState:UIControlStateSelected];
+        [button setTitleColor:UIColorFromRGB(0xffffff) forState:UIControlStateHighlighted];
+        [button setTitleColor:UIColorFromRGB(0x999999) forState:UIControlStateSelected|UIControlStateHighlighted];
         [button addTarget:self action:@selector(goForMoreInfo) forControlEvents:UIControlEventTouchUpInside];
         [button setTitle:[NSString fontAwesomeIconStringForEnum:FAInfoCircle] forState:UIControlStateNormal];
         [array addObject:[[UIBarButtonItem alloc]initWithCustomView:button]];
@@ -288,10 +290,10 @@
         button.backgroundColor = [UIColor clearColor];
         button.titleLabel.font = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
         [button setTitleEdgeInsets:UIEdgeInsetsMake(6, 0, 0, 0)];
-        [button setTitleColor:UIColorFromRGB(0x444444) forState:UIControlStateNormal];
-        [button setTitleColor:UIColorFromRGB(0x999999) forState:UIControlStateSelected];
-        [button setTitleColor:UIColorFromRGB(0x999999) forState:UIControlStateHighlighted];
-        [button setTitleColor:UIColorFromRGB(0x444444) forState:UIControlStateSelected|UIControlStateHighlighted];
+        [button setTitleColor:UIColorFromRGB(0x999999) forState:UIControlStateNormal];
+        [button setTitleColor:UIColorFromRGB(0xffffff) forState:UIControlStateSelected];
+        [button setTitleColor:UIColorFromRGB(0xffffff) forState:UIControlStateHighlighted];
+        [button setTitleColor:UIColorFromRGB(0x999999) forState:UIControlStateSelected|UIControlStateHighlighted];
         [button addTarget:self action:@selector(refresh) forControlEvents:UIControlEventTouchUpInside];
         [button setTitle:[NSString fontAwesomeIconStringForEnum:FARefresh] forState:UIControlStateNormal];
         [array addObject:[[UIBarButtonItem alloc]initWithCustomView:button]];
@@ -302,12 +304,12 @@
         button.backgroundColor = [UIColor clearColor];
         button.titleLabel.font = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
         [button setTitleEdgeInsets:UIEdgeInsetsMake(6, 0, 0, 0)];
-        [button setTitleColor:UIColorFromRGB(0x444444) forState:UIControlStateNormal];
-        [button setTitleColor:UIColorFromRGB(0x999999) forState:UIControlStateSelected];
-        [button setTitleColor:UIColorFromRGB(0x999999) forState:UIControlStateHighlighted];
-        [button setTitleColor:UIColorFromRGB(0x444444) forState:UIControlStateSelected|UIControlStateHighlighted];
+        [button setTitleColor:UIColorFromRGB(0x999999) forState:UIControlStateNormal];
+        [button setTitleColor:UIColorFromRGB(0xffffff) forState:UIControlStateSelected];
+        [button setTitleColor:UIColorFromRGB(0xffffff) forState:UIControlStateHighlighted];
+        [button setTitleColor:UIColorFromRGB(0x999999) forState:UIControlStateSelected|UIControlStateHighlighted];
         [button addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
-        [button setTitle:[NSString fontAwesomeIconStringForEnum:FARefresh] forState:UIControlStateNormal];
+        [button setTitle:[NSString fontAwesomeIconStringForEnum:FASignOut] forState:UIControlStateNormal];
         [array addObject:[[UIBarButtonItem alloc]initWithCustomView:button]];
     }
     
