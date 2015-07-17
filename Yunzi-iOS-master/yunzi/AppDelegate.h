@@ -14,7 +14,6 @@
 @property (strong, nonatomic) UIWindow *window;
 - (BOOL)checkLocationServices;
 - (BOOL)checkBluetoothServices;
-- (NSString *)getName;
 - (void)check;
 
 @end

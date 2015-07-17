@@ -11,5 +11,5 @@
 #import "AppDelegate.h"
 
 @interface LogTableViewController : UITableViewController
-
+@property (nonatomic, strong) NSArray *logs;
 @end

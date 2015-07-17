@@ -10,6 +10,7 @@
 #import "YunziGridCell.h"
 #import "YunziViewController.h"
 #import "LogTableViewController.h"
+#import "Setting.h"
 
 @interface HomeViewController ()<SBKBeaconManagerDelegate,UISearchBarDelegate>
 
@@ -33,17 +34,20 @@
 {
     [super viewDidAppear:animated];
     
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    //AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+
+    NSMutableDictionary *dictPlist = [NSMutableDictionary dictionaryWithContentsOfFile:[Setting getPath]];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://119.9.91.62/test/getBeaconsByUser.php?user=%@", [appDelegate getName]]]];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://119.9.91.62/test/getBeaconsByUser.php?user=%@",  [dictPlist objectForKey:@"name"]]]];
     [request setHTTPMethod:@"GET"];
     
     NSURLResponse *requestResponse;
     NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
-    NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
-    self.validBeacons = [requestReply componentsSeparatedByString:@","];
-    NSLog(@"validBeacons: %@", self.validBeacons);
+    NSArray *beacons = [NSJSONSerialization JSONObjectWithData:requestHandler options:0 error:NULL];
+    NSLog(@"beacons=%@", beacons);
+    [dictPlist setValue:beacons forKey:@"beacons"];
+    [dictPlist writeToFile:[Setting getPath] atomically:YES];
 
     //if(!self.dataArray)
     //{
@@ -76,15 +80,9 @@
 
 - (void)logout
 {
-    NSMutableDictionary *dictPlist = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *dictPlist = [NSMutableDictionary dictionaryWithContentsOfFile:[Setting getPath]];
     [dictPlist setValue:@"" forKey:@"name"];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
-    NSString *docfilePath = [basePath stringByAppendingPathComponent:@"bonfire.plist"];
-    [dictPlist writeToFile:docfilePath atomically:YES];
-
-    NSMutableDictionary *plistdict = [NSMutableDictionary dictionaryWithContentsOfFile:docfilePath];
-    NSLog(@"name:%@", [plistdict objectForKey:@"name"]);
+    [dictPlist writeToFile:[Setting getPath] atomically:YES];
 
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate check];
@@ -130,7 +128,6 @@
                 [self.navigationController pushViewController:VC animated:YES];
             };
         }
-        cell.validBeacons = self.validBeacons;
         
         NSMutableArray *array = [[NSMutableArray alloc] init];
         NSUInteger offset = indexPath.row * 3;

@@ -17,6 +17,6 @@
 @property (strong, nonatomic) UISearchBar *searchBar;
 @property (strong, nonatomic) UISearchDisplayController *searchDC;
 @property (strong, nonatomic) NSMutableArray *filteredArray;
-@property (nonatomic, strong) NSArray *validBeacons;
+//@property (nonatomic, strong) NSArray *validBeacons;
 
 @end

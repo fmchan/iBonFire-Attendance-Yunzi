@@ -14,7 +14,6 @@
 @property (nonatomic, strong) NSArray *dataArray;
 @property (nonatomic, strong) NSMutableArray *itemArray;
 @property (nonatomic, copy) void (^tapBlock)(SBKBeacon *);
-@property (nonatomic, strong) NSArray *validBeacons;
 
 + (CGFloat)height;
 

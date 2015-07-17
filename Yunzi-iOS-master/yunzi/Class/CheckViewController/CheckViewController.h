@@ -11,6 +11,5 @@
 #import "AppDelegate.h"
 
 @interface CheckViewController : UIViewController <UITextFieldDelegate>
-@property (nonatomic, strong) NSString *username;
 -(void)refresh;
 @end

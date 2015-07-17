@@ -7,6 +7,7 @@
 //
 
 #import "CheckViewController.h"
+#import "Setting.h"
 
 @interface CheckViewController ()
 @property (nonatomic,strong)NSTimer * timer;
@@ -16,7 +17,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.username = [kAppDelegate getName];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = UIColorFromRGB(0x222222);
     self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight - kStatusBarHeight - kNavigationBarHeight);
@@ -105,8 +105,9 @@
         textField.returnKeyType = UIReturnKeyDone;
         textField.clearButtonMode = UITextFieldViewModeWhileEditing;
         textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        if (self.username != nil && [self.username length] > 0)
-            textField.text = self.username;
+        NSString *name = [[Setting getPlist] objectForKey:@"name"];
+        if (name != nil && [name length] > 0)
+            textField.text = name;
         textField.delegate = self;
         [self.view addSubview:textField];
     }
@@ -131,15 +132,10 @@
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     NSLog(@"textFieldDidEndEditing");
-    NSMutableDictionary *dictPlist = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *dictPlist = [NSMutableDictionary dictionaryWithContentsOfFile:[Setting getPath]];
     [dictPlist setValue:textField.text forKey:@"name"];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
-    NSString *docfilePath = [basePath stringByAppendingPathComponent:@"bonfire.plist"];
-    [dictPlist writeToFile:docfilePath atomically:YES];
-
-    self.username = [kAppDelegate getName];
-    NSLog(@"name: %@", self.username);
+    [dictPlist writeToFile:[Setting getPath] atomically:YES];
+    NSLog(@"name: %@", [dictPlist objectForKey:@"name"]);
     [self refresh];
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -188,8 +184,8 @@
     {
         bluetooth.text = [NSString fontAwesomeIconStringForEnum:FAtoggleOff];
     }
-    
-    if([kAppDelegate checkBluetoothServices]&&[kAppDelegate checkLocationServices]&&self.username != nil && [self.username length] > 0)
+    NSString *name = [[Setting getPlist] objectForKey:@"name"];
+    if([kAppDelegate checkBluetoothServices]&&[kAppDelegate checkLocationServices]&&name != nil && [name length] > 0)
     {
         dismiss.hidden = NO;
         [self startCircle];

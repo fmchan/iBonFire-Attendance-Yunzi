@@ -7,6 +7,7 @@
 //
 
 #import "YunziItemView.h"
+#import "Setting.h"
 
 @implementation YunziItemView
 
@@ -79,7 +80,7 @@
     
     if (self.beacon) {
         self.hidden = NO;
-        if ([self.validBeacons containsObject:self.beacon.serialNumber])
+        if ([[[Setting getPlist] objectForKey:@"beacons"] containsObject:self.beacon.serialNumber])
             self.imageView.backgroundColor = [UIColor yellowColor];
         else
             self.imageView.backgroundColor = [UIColor whiteColor];

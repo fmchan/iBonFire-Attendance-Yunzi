@@ -12,6 +12,7 @@
 #import "SBKBeacon.h"
 #import "SBKBeaconManager.h"
 #import "SBKBeaconManager+Cloud.h"
+#import "Setting.h"
 
 
 @interface AppDelegate ()<CBCentralManagerDelegate,SBKBeaconManagerDelegate>
@@ -149,21 +150,14 @@
     return YES;
 }
 
-- (NSString *)getName{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
-    NSString *docfilePath = [basePath stringByAppendingPathComponent:@"bonfire.plist"];
-    NSMutableDictionary *plistdict = [NSMutableDictionary dictionaryWithContentsOfFile:docfilePath];
-    NSLog(@"get name: %@", [plistdict objectForKey:@"name"]);
-    return [plistdict objectForKey:@"name"];
-}
 - (void)check{
     
     if ([self.window.rootViewController.presentedViewController isKindOfClass:[CheckViewController class]]) {
         [(CheckViewController *)self.window.rootViewController.presentedViewController refresh];
     }
     NSLog(@"check");
-    if ([self checkBluetoothServices]&&[self checkLocationServices]&& [self getName] != nil && [[self getName] length] > 0) {
+    NSString *name = [[Setting getPlist] objectForKey:@"name"];
+    if ([self checkBluetoothServices]&&[self checkLocationServices]&& name != nil && [name length] > 0) {
 
     }
     else
@@ -193,7 +187,11 @@
     if (![[NSUserDefaults standardUserDefaults] boolForKey:beacon.serialNumber]) {
         return;
     }
+
+    NSMutableDictionary *dictPlist = [Setting getPlist];
+    NSString *action = @"in";
     
+    if ([[dictPlist objectForKey:@"beacons"] containsObject:beacon.serialNumber]) {
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground){
         if (beacon.inRange) {
             UILocalNotification *notification = [[UILocalNotification alloc] init];
@@ -206,6 +204,7 @@
             NSString * message = [NSString stringWithFormat:@"\U0001F628 OUT:%@",beacon.serialNumber];
             notification.alertBody = message;
             [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+            action = @"out";
         }
         
     }
@@ -217,8 +216,20 @@
         else{
             NSString * message = [NSString stringWithFormat:@"\U0001F628 OUT:%@",beacon.serialNumber];
             [SVProgressHUD showImage:nil status:message];
+            action = @"out";
         }
     }
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://119.9.91.62/test/addLog.php?user=%@&action=%@&beacon=%@",  [dictPlist objectForKey:@"name"], action, beacon.serialNumber]]];
+        [request setHTTPMethod:@"GET"];
+        
+        NSURLResponse *requestResponse;
+        NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
+        NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
+        NSLog(@"log requestReply:%@", requestReply);
+
+    } else
+        NSLog(@"serial not contain:%@", beacon.serialNumber);
 }
 
 @end

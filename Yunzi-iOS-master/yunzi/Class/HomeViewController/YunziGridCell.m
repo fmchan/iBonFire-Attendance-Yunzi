@@ -70,7 +70,6 @@
     
     for (NSUInteger i = 0; i < 3; i++) {
         YunziItemView *item = self.itemArray[i];
-        item.validBeacons = self.validBeacons;
         if (i < self.dataArray.count) {
             item.beacon = self.dataArray[i];
         } else {

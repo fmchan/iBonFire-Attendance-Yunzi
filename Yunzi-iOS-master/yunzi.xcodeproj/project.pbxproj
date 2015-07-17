@@ -74,6 +74,7 @@
 		4EDD710719EF7B480080C8DC /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDD710619EF7B480080C8DC /* NotificationViewController.m */; };
 		4EDD710D19EFD4EE0080C8DC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EDD710C19EFD4EE0080C8DC /* MapKit.framework */; };
 		4EDD711819F0FA880080C8DC /* CheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDD711719F0FA880080C8DC /* CheckViewController.m */; };
+		846ACB961B589CF100430090 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = 846ACB951B589CF100430090 /* Setting.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -217,6 +218,8 @@
 		4EDD710C19EFD4EE0080C8DC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4EDD711619F0FA880080C8DC /* CheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckViewController.h; sourceTree = "<group>"; };
 		4EDD711719F0FA880080C8DC /* CheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckViewController.m; sourceTree = "<group>"; };
+		846ACB941B589CF100430090 /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Setting.h; path = Class/Setting/Setting.h; sourceTree = "<group>"; };
+		846ACB951B589CF100430090 /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Setting.m; path = Class/Setting/Setting.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +267,8 @@
 			children = (
 				4E19F32C19E9341400486365 /* Class */,
 				4E19F38B19EB78EF00486365 /* Config.h */,
+				846ACB941B589CF100430090 /* Setting.h */,
+				846ACB951B589CF100430090 /* Setting.m */,
 				4E19F30A19E930CC00486365 /* AppDelegate.h */,
 				4E19F30B19E930CC00486365 /* AppDelegate.m */,
 				4E19F31319E930CC00486365 /* Images.xcassets */,
@@ -779,6 +784,7 @@
 				4E19F36E19E9341500486365 /* UIImage+App.m in Sources */,
 				4E19F30C19E930CC00486365 /* AppDelegate.m in Sources */,
 				4EDD70A019EE6C870080C8DC /* LightViewController.m in Sources */,
+				846ACB961B589CF100430090 /* Setting.m in Sources */,
 				150B127A1B57F16100D90D2D /* LogTableViewController.m in Sources */,
 				4E19F37F19E9341500486365 /* UIButton+WebCache.m in Sources */,
 				4E19F37019E9341500486365 /* FAImageView.m in Sources */,

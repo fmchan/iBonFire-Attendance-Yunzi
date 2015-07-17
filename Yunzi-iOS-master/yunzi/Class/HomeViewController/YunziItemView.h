@@ -18,6 +18,5 @@
 @property (nonatomic, strong) UILabel *SNLabel;
 @property (nonatomic, strong) UILabel *IDLabel;
 @property (nonatomic, strong) UIButton *actionButton;
-@property (nonatomic, strong) NSArray *validBeacons;
 
 @end
