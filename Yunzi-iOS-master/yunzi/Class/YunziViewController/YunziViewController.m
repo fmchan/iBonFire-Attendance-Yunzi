@@ -128,8 +128,69 @@
         label.tag = 100;
         [view addSubview:label];
     }
+
+    {
+        UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(kScreenWidth/2+10, 60, kScreenWidth/2, 20)];
+        label.backgroundColor = [UIColor clearColor];
+        label.text = self.beacon.accuracy > 0 ?
+            [NSString stringWithFormat:@"%@：%0.0fcm",NSLocalizedString(@"Distance", @""),self.beacon.accuracy*100] :
+            [NSString stringWithFormat:@"%@：%@",NSLocalizedString(@"Distance", @""),@"Unknown"];
+        label.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];
+        label.textColor = UIColorFromRGB(0xffffff);
+        label.textAlignment = NSTextAlignmentLeft;
+        label.tag = 100;
+        [view addSubview:label];
+    }
+
+    {
+        UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(kScreenWidth/2+10, 80, kScreenWidth/2, 20)];
+        label.backgroundColor = [UIColor clearColor];
+        NSString *proximity = @"";
+        switch (self.beacon.proximity) {
+            case CLProximityUnknown:
+            {
+                proximity = @"Unknown";
+                break;
+            }
+            case CLProximityImmediate:
+            {
+                proximity = NSLocalizedString(@"Immediate", @"");
+                break;
+            }
+            case CLProximityNear:
+            {
+                proximity = NSLocalizedString(@"Near", @"");
+                break;
+            }
+            case CLProximityFar:
+            {
+                proximity = NSLocalizedString(@"Far", @"");
+                break;
+            }
+            default:
+                break;
+        }
+        
+        label.text = [NSString stringWithFormat:@"%@ : %@",NSLocalizedString(@"Proximity", @""),proximity];
+        label.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];
+        label.textColor = UIColorFromRGB(0xffffff);
+        label.textAlignment = NSTextAlignmentLeft;
+        label.tag = 100;
+        [view addSubview:label];
+    }
     
     {
+        UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(kScreenWidth/2+10, 100, kScreenWidth/2, 20)];
+        label.backgroundColor = [UIColor clearColor];
+        label.text = [NSString stringWithFormat:@"%@ : %@",NSLocalizedString(@"Temperature", @""),self.beacon.temperature];
+        label.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];
+        label.textColor = UIColorFromRGB(0xffffff);
+        label.textAlignment = NSTextAlignmentLeft;
+        label.tag = 100;
+        [view addSubview:label];
+    }
+    
+    /*{
         UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(kScreenWidth/2+10, 60, kScreenWidth/2, 20)];
         label.backgroundColor = [UIColor clearColor];
         if(self.beacon.light)
@@ -182,7 +243,7 @@
         label.textAlignment = NSTextAlignmentLeft;
         label.tag = 100;
         [view addSubview:label];
-    }
+    }*/
     
     {
         UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(kScreenWidth/2+10, 120, kScreenWidth/2, 20)];
@@ -228,12 +289,12 @@
     [self.view addSubview:view];
     
     NSArray * array = @[
-                        @{@"icon":[NSString fontAwesomeIconStringForEnum:FAMapMarker], @"title":NSLocalizedString(@"Distance", @"")},
-                        @{@"icon":[NSString fontAwesomeIconStringForEnum:FABullseye],@"title":NSLocalizedString(@"Proximity", @"")},
-                        @{@"icon":[NSString fontAwesomeIconStringForEnum:FACloud], @"title":NSLocalizedString(@"Temperature", @"")},
-                        @{@"icon":[NSString fontAwesomeIconStringForEnum:FALightbulbO], @"title":NSLocalizedString(@"Light", @"")},
-                        @{@"icon":[NSString fontAwesomeIconStringForEnum:FARocket], @"title":NSLocalizedString(@"Move", @"")},
-                        @{@"icon":[NSString fontAwesomeIconStringForEnum:FARss], @"title":NSLocalizedString(@"Notification", @"")},
+                        //@{@"icon":[NSString fontAwesomeIconStringForEnum:FAMapMarker], @"title":NSLocalizedString(@"Distance", @"")},
+                        //@{@"icon":[NSString fontAwesomeIconStringForEnum:FABullseye],@"title":NSLocalizedString(@"Proximity", @"")},
+                        //@{@"icon":[NSString fontAwesomeIconStringForEnum:FACloud], @"title":NSLocalizedString(@"Temperature", @"")},
+                        //@{@"icon":[NSString fontAwesomeIconStringForEnum:FALightbulbO], @"title":NSLocalizedString(@"Light", @"")},
+                        //@{@"icon":[NSString fontAwesomeIconStringForEnum:FARocket], @"title":NSLocalizedString(@"Move", @"")},
+                        //@{@"icon":[NSString fontAwesomeIconStringForEnum:FARss], @"title":NSLocalizedString(@"Notification", @"")},
                         ];
     
     int i = 0;
@@ -294,7 +355,7 @@
         [self.navigationController pushViewController:[self shareTemperatureVC] animated:YES];
         return;
     }
-    if ([text isEqualToString:NSLocalizedString(@"Light", @"")]) {
+    /*if ([text isEqualToString:NSLocalizedString(@"Light", @"")]) {
         [self shareLightVC].light = self.beacon.light;
         [self.navigationController pushViewController:[self shareLightVC] animated:YES];
         return;
@@ -309,7 +370,7 @@
         [self shareNotificationVC].beacon = self.beacon;
         [self.navigationController pushViewController:[self shareNotificationVC] animated:YES];
         return;
-    }
+    }*/
 
 }
 
@@ -324,7 +385,7 @@
     return  self.temperatureVC;
 }
 
-- (LightViewController *)shareLightVC
+/*- (LightViewController *)shareLightVC
 {
     if(!self.lightVC)
     {
@@ -341,7 +402,7 @@
     self.moveVC.status = self.beacon.moving;
     self.moveVC.count = self.beacon.accelerometerCount;
     return self.moveVC;
-}
+}*/
 - (DistanceViewController *)shareDistanceVC
 {
     if (!self.distanceVC) {
@@ -358,13 +419,13 @@
     self.proximityVC.proximity = self.beacon.proximity;
     return self.proximityVC;
 }
-- (NotificationViewController *)shareNotificationVC
+/*- (NotificationViewController *)shareNotificationVC
 {
     if (!self.notificationVC) {
         self.notificationVC =[[NotificationViewController alloc]init];
     }
     return self.notificationVC;
-}
+}*/
 
 #pragma mark - KVO
 
@@ -373,10 +434,10 @@
     [self.beacon addObserver:self forKeyPath:@"rssi" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     [self.beacon addObserver:self forKeyPath:@"accuracy" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     [self.beacon addObserver:self forKeyPath:@"proximity" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
-    [self.beacon addObserver:self forKeyPath:@"light" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    //[self.beacon addObserver:self forKeyPath:@"light" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     [self.beacon addObserver:self forKeyPath:@"temperature" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
-    [self.beacon addObserver:self forKeyPath:@"moving" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
-    [self.beacon addObserver:self forKeyPath:@"accelerometerCount" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    //[self.beacon addObserver:self forKeyPath:@"moving" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    //[self.beacon addObserver:self forKeyPath:@"accelerometerCount" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
 
 }
 
@@ -385,10 +446,10 @@
     [self.beacon removeObserver:self forKeyPath:@"rssi"];
     [self.beacon removeObserver:self forKeyPath:@"accuracy"];
     [self.beacon removeObserver:self forKeyPath:@"proximity"];
-    [self.beacon removeObserver:self forKeyPath:@"light"];
+    //[self.beacon removeObserver:self forKeyPath:@"light"];
     [self.beacon removeObserver:self forKeyPath:@"temperature"];
-    [self.beacon removeObserver:self forKeyPath:@"moving"];
-    [self.beacon removeObserver:self forKeyPath:@"accelerometerCount"];
+    //[self.beacon removeObserver:self forKeyPath:@"moving"];
+    //[self.beacon removeObserver:self forKeyPath:@"accelerometerCount"];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -408,18 +469,18 @@
             [self shareProximityVC].proximity = ((SBKBeacon *)object).proximity;
         }
     }
-    else if ([keyPath isEqualToString:@"light"]) {
+    /*else if ([keyPath isEqualToString:@"light"]) {
         if ([change objectForKey:@"new"] != [change objectForKey:@"old"]) {
             [self shareLightVC].light = ((SBKBeacon *)object).light;
         }
-    }
+    }*/
 
     else if ([keyPath isEqualToString:@"temperature"]) {
         if ([change objectForKey:@"new"] != [change objectForKey:@"old"]) {
             [self shareTemperatureVC].temperature = ((SBKBeacon *)object).temperature;
         }
     }
-    else if ([keyPath isEqualToString:@"moving"]) {
+    /*else if ([keyPath isEqualToString:@"moving"]) {
         if ([change objectForKey:@"new"] != [change objectForKey:@"old"]) {
             [self shareMoveVC].status = ((SBKBeacon *)object).isMoving;
         }
@@ -428,7 +489,7 @@
         if ([change objectForKey:@"new"] != [change objectForKey:@"old"]) {
             [self shareMoveVC].count = ((SBKBeacon *)object).accelerometerCount;
         }
-    }
+    }*/
 }
 
 - (void)dealloc
@@ -449,7 +510,7 @@
 {
     [self shareTemperatureVC].temperature = temperature;
 }
-
+/*
 - (void)sensoroBeacon:(SBKBeacon *)beacon didUpdateLightData:(NSNumber *)light
 {
     [self shareLightVC].light = light;
@@ -463,6 +524,6 @@
 - (void)sensoroBeacon:(SBKBeacon *)beacon didUpdateMovingState:(NSNumber *)isMoving
 {
     [self shareMoveVC].status = isMoving;
-}
+}*/
 
 @end

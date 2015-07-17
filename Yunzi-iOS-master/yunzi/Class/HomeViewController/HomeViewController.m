@@ -211,7 +211,7 @@
 }
 
 - (void)beaconManager:(SBKBeaconManager *)beaconManager didDetermineState:(SBKRegionState) state forRegion:(SBKBeaconID*) region
-{
+{/*
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     switch (state) {
         case SBKRegionStateEnter:
@@ -235,7 +235,7 @@
         default:
             break;
     }
-    
+    */
 }
 
 #pragma mark - ConfigSearchBar
