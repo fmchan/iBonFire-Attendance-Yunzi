@@ -16,6 +16,10 @@
     NSDate *_maxDate;
     
     NSDate *_dateSelected;
+
+    UITableView *_tableView;
+    
+    NSDictionary *_timeline;
 }
 
 @end
@@ -30,6 +34,20 @@
     }
     
     self.title = @"Basic";
+    _timeline = [[NSDictionary alloc] initWithObjectsAndKeys:
+                 [NSNull null],@"10:00am",
+                 [NSNull null],@"11:00am",
+                 [NSNull null],@"12:00pm",
+                 @"avaiable",@"1:00pm",
+                 [NSNull null],@"2:00pm",
+                 [NSNull null],@"3:00pm",
+                 [NSNull null],@"4:00pm",
+                 [NSNull null],@"5:00pm",
+                 [NSNull null],@"6:00pm",
+                 @"avaiable",@"7:00pm",
+                 [NSNull null],@"8:00pm",
+                 [NSNull null],@"9:00pm",
+                  nil];
     
     return self;
 }
@@ -50,6 +68,46 @@
     [_calendarManager setMenuView:_calendarMenuView];
     [_calendarManager setContentView:_calendarContentView];
     [_calendarManager setDate:_todayDate];
+    
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 250, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 250)];
+    //_tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.hidden = YES;
+    
+    [self.view addSubview:_tableView];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [[_timeline allKeys] count]; // or other number, that you want
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil)
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:cellIdentifier];
+    
+    cell.backgroundView = [[UIView alloc] init];
+    [cell.backgroundView setBackgroundColor:[UIColor clearColor]];
+    [[[cell contentView] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+
+    if (indexPath.row < [[_timeline allKeys] count]) {
+        NSString *key = [_timeline allKeys][indexPath.row];
+        cell.textLabel.text = key;
+        if ([_timeline objectForKey:key] != [NSNull null]) {
+            cell.detailTextLabel.text = [_timeline objectForKey:key];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleDefault];
+            [cell setUserInteractionEnabled:YES];
+        } else {
+            cell.detailTextLabel.text = @"";
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+            [cell setUserInteractionEnabled:NO];
+        }
+    }
+    
+    return cell;
 }
 
 #pragma mark - Buttons callback
@@ -62,6 +120,7 @@
 - (IBAction)didChangeModeTouch
 {
     _calendarManager.settings.weekModeEnabled = !_calendarManager.settings.weekModeEnabled;
+    _tableView.hidden = !_tableView.hidden;
     [_calendarManager reload];
     
     CGFloat newHeight = 300;
@@ -116,7 +175,24 @@
 
 - (void)calendar:(JTCalendarManager *)calendar didTouchDayView:(JTCalendarDayView *)dayView
 {
+    
     _dateSelected = dayView.date;
+    //_calendarManager.settings.weekModeEnabled = !_calendarManager.settings.weekModeEnabled;
+    if (!_calendarManager.settings.weekModeEnabled) {
+        _calendarManager.settings.weekModeEnabled = true;
+        [_calendarManager setDate:_dateSelected];
+        [_calendarManager reload];
+    
+        CGFloat newHeight = 300;
+        if(_calendarManager.settings.weekModeEnabled){
+            newHeight = 85.;
+        }
+    
+        self.calendarContentViewHeight.constant = newHeight;
+        [self.view layoutIfNeeded];
+
+        _tableView.hidden = NO;
+    }
     
     // Animation for the circleView
     dayView.circleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.1, 0.1);
