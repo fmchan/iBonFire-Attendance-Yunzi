@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 
 #import "BasicViewController.h"
+#import "ProfileViewController.h"
 
 @interface AppDelegate ()
 
@@ -20,7 +21,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window makeKeyAndVisible];
     
-    self.window.rootViewController = [BasicViewController new];
+    self.window.rootViewController = [ProfileViewController new];
     return YES;
 }
 
