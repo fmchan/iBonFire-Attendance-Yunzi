@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 
 #import <JTCalendar/JTCalendar.h>
+#import "HeaderView.h"
 
 @interface BasicViewController : UIViewController<JTCalendarDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -17,5 +18,7 @@
 @property (strong, nonatomic) JTCalendarManager *calendarManager;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *calendarContentViewHeight;
+
+@property (strong, nonatomic) HeaderView *headerView;
 
 @end

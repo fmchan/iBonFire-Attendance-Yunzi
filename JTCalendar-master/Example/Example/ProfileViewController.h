@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HeaderView.h"
 
 @interface ProfileViewController : UIViewController <UIScrollViewDelegate>
 
 @property (strong, nonatomic) UIScrollView *scrollView;
-@property (strong, nonatomic) UIView *headerView;
+@property (strong, nonatomic) HeaderView *headerView;
 
 @end

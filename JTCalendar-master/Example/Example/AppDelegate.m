@@ -21,7 +21,11 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window makeKeyAndVisible];
     
-    self.window.rootViewController = [ProfileViewController new];
+    ProfileViewController *viewController = [ProfileViewController new];
+    //viewController.view.frame = CGRectMake(0.0, 0.0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    self.navController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    [self.navController setNavigationBarHidden:YES animated:NO];
+    self.window.rootViewController = self.navController;
     return YES;
 }
 

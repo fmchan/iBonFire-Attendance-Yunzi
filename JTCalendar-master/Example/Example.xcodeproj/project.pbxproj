@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		846A105F1B79ADD5002DE42F /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846A105E1B79ADD5002DE42F /* ProfileViewController.m */; };
+		8472F0FA1B8DB2A10080BCFA /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8472F0F91B8DB2A10080BCFA /* HeaderView.m */; };
 		A478836B7E6915F6A886DADD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A32EECC3DD04D628CA764863 /* libPods.a */; };
 		AB21D7A11B55570E006BC9D1 /* BasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB21D79F1B55570E006BC9D1 /* BasicViewController.m */; };
 		AB21D7A21B55570E006BC9D1 /* BasicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB21D7A01B55570E006BC9D1 /* BasicViewController.xib */; };
@@ -19,6 +20,8 @@
 /* Begin PBXFileReference section */
 		846A105D1B79ADD5002DE42F /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		846A105E1B79ADD5002DE42F /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		8472F0F81B8DB2A10080BCFA /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
+		8472F0F91B8DB2A10080BCFA /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 		A32EECC3DD04D628CA764863 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB21D79E1B55570E006BC9D1 /* BasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicViewController.h; sourceTree = "<group>"; };
 		AB21D79F1B55570E006BC9D1 /* BasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicViewController.m; sourceTree = "<group>"; };
@@ -54,6 +57,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8472F0FB1B8DB2A70080BCFA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8472F0F81B8DB2A10080BCFA /* HeaderView.h */,
+				8472F0F91B8DB2A10080BCFA /* HeaderView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		AB21D7B01B555839006BC9D1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +99,7 @@
 		AB6843E11A06FCE2000ADE68 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				8472F0FB1B8DB2A70080BCFA /* Views */,
 				AB21D7B01B555839006BC9D1 /* Controllers */,
 				AB6843E61A06FCE2000ADE68 /* AppDelegate.h */,
 				AB6843E71A06FCE2000ADE68 /* AppDelegate.m */,
@@ -219,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB21D7A11B55570E006BC9D1 /* BasicViewController.m in Sources */,
+				8472F0FA1B8DB2A10080BCFA /* HeaderView.m in Sources */,
 				AB6843E81A06FCE2000ADE68 /* AppDelegate.m in Sources */,
 				846A105F1B79ADD5002DE42F /* ProfileViewController.m in Sources */,
 				AB6843E51A06FCE2000ADE68 /* main.m in Sources */,

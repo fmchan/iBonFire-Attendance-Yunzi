@@ -32,7 +32,7 @@
     if(!self){
         return nil;
     }
-    
+
     self.title = @"Basic";
     _timeline = [[NSDictionary alloc] initWithObjectsAndKeys:
                  [NSNull null],@"10:00am",
@@ -74,6 +74,10 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.hidden = YES;
+    
+    self.headerView = [[HeaderView alloc] initWithFrame:CGRectMake(0.0, 20.0, [UIScreen mainScreen].bounds.size.width, 30.0)];
+    self.headerView.parent = self;
+    [self.view addSubview:self.headerView];
     
     [self.view addSubview:_tableView];
 }
