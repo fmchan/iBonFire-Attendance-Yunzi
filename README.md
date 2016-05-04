@@ -35,4 +35,4 @@ The list indicates the SN and ID of circumjacent Yunzi, which are accordant with
 ######VI.Acknowledgment
 Sensoro Beacon devices
 
-<img src="./png/6.PNG" width="240px">
+<img src="./png/6.jpg" width="240px">
